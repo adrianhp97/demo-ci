@@ -108,9 +108,21 @@ $config['rest_realm'] = 'REST API';
 | 'digest'  More secured login
 | 'session' Check for a PHP session variable. See 'auth_source' to set the
 |           authorization key
+| 'jwt'     Check jwt bearer on authorization header and validate it.
 |
 */
 $config['rest_auth'] = FALSE;
+
+/*
+|--------------------------------------------------------------------------
+| JWT Settings
+|--------------------------------------------------------------------------
+|
+| Required for jwt authentication
+|
+*/
+$config['jwt_secret_key'] = 'My Secret Key!';
+$config['jwt_token_expire'] = 86500;
 
 /*
 |--------------------------------------------------------------------------
@@ -126,7 +138,7 @@ $config['rest_auth'] = FALSE;
 | Note: If 'rest_auth' is set to 'session' then change 'auth_source' to the name of the session variable
 |
 */
-$config['auth_source'] = 'ldap';
+$config['auth_source'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -138,7 +150,6 @@ $config['auth_source'] = 'ldap';
 |
 */
 $config['allow_auth_and_keys'] = TRUE;
-$config['strict_api_and_auth'] = TRUE; // force the use of both api and auth before a valid api request is made
 
 /*
 |--------------------------------------------------------------------------
@@ -187,6 +198,12 @@ $config['auth_library_function'] = '';
 
 // ---Uncomment list line for the wildard unit test
 // $config['auth_override_class_method']['wildcard_test_cases']['*'] = 'basic';
+
+// JWT Exmaple
+$config['auth_override_class_method_http']['jwt']['token']['post'] = 'none';
+$config['auth_override_class_method_http']['jwt']['token_refresh']['get'] = 'jwt';
+$config['auth_override_class_method_http']['jwt']['token_info']['get'] = 'jwt';
+
 
 /*
 |--------------------------------------------------------------------------
@@ -604,24 +621,3 @@ $config['allow_any_cors_domain'] = FALSE;
 |
 */
 $config['allowed_cors_origins'] = [];
-
-/*
-|--------------------------------------------------------------------------
-| CORS Forced Headers
-|--------------------------------------------------------------------------
-|
-| If using CORS checks, always include the headers and values specified here 
-| in the OPTIONS client preflight.
-| Example:
-| $config['forced_cors_headers'] = [
-|   'Access-Control-Allow-Credentials' => 'true'
-| ];
-|
-| Added because of how Sencha Ext JS framework requires the header
-| Access-Control-Allow-Credentials to be set to true to allow the use of
-| credentials in the REST Proxy. 
-| See documentation here:
-| http://docs.sencha.com/extjs/6.5.2/classic/Ext.data.proxy.Rest.html#cfg-withCredentials
-|
-*/
-$config['forced_cors_headers'] = [];
