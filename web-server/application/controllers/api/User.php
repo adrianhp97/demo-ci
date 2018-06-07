@@ -66,10 +66,10 @@ class User extends REST_Controller {
     {
         $data = array();
         $id = $this->put('id');
-        $data['username'] = $this->post('username');
-        $data['fullname'] = $this->post('fullname');
-        $data['email'] = $this->post('email');
-        $data['password'] = $this->post('password');
+        $data['username'] = $this->put('username');
+        $data['fullname'] = $this->put('fullname');
+        $data['email'] = $this->put('email');
+        $data['password'] = $this->put('password');
         if (!empty($id) &&
             !empty($data['username']) && 
             !empty($data['fullname']) && 

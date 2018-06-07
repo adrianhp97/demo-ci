@@ -1,38 +1,38 @@
 <?php 
 class User_model extends CI_Model {
 
-    var $API ="";
+  var $API ="";
     
-    public function __construct() 
-    {
+  public function __construct() 
+  {
 		parent::__construct();
-        $this->load->library('Restclient');
-        $this->API="http://localhost/demo-ci/web-server/api/user/";
-    }
+    $this->load->library('Restclient');
+    $this->API="http://localhost/demo-ci/web-server/api/user/";
+  }
     
-    public function get()
-    {
-		return json_decode($this->restclient->get());
-    }
+  public function get()
+  {
+		return $this->restclient->get($this->API);
+  }
     
-    public function getUserById($id)
-    {
-		return json_decode($this->restclient->get($id),true);
-    }
+  public function getUserById($id)
+  {
+		return $this->restclient->get($this->API, array('id' => $id));
+  }
     
 	public function insert($data)
 	{
-		$this->restclient->post($data);
-    }
+		return $this->restclient->post($this->API, $data);
+  }
     
 	public function update($data)
 	{
-		$this->restclient->put($data);
-    }
+		return $this->restclient->put($this->API, $data);
+  }
     
 	public function delete($id)
 	{
-		$this->restclient->delete($id);
+		return $this->restclient->delete($this->API, array('id' => $id));
 	}
 }
 ?>

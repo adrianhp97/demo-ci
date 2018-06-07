@@ -45,22 +45,21 @@ class User extends  CI_Controller {
 			'fullname' => $this->input->post('fullname'),
 			'password' => $this->input->post('password'),
 			'email' => $this->input->post('email'),
-        );
+		);
         
-		$this->User_model->update($data);
+		$response = $this->User_model->update($data);
 		redirect('user');
     }
     
-    public function edit()
+    public function edit($id)
     {
-		$data['user'] = $this->User_model->getUserById($this->uri->segment(3))[0];
+		$data['user'] = $this->User_model->getUserById($id);
 		$this->load->view('user_edit',$data);
     }
     
-	public function delete()
+	public function delete($id)
 	{
-		$id = $this->uri->segment(3);
-		$this->User_model->delete($id);
+		$response = $this->User_model->delete($id);
 		redirect('user');
 	}
 }

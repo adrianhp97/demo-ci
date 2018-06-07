@@ -35,7 +35,7 @@
 
         public function delete($id) 
         {
-            $query = $this->db->delete('users', $id);
+            $query = $this->db->delete('users', array( 'id' => $id ));
             return $query ? true : false;
         }
 

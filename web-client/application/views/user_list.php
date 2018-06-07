@@ -28,12 +28,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             {
                 foreach ($user_list as $user) {
                     ?>
-                    <tr class="mhs-row" data-href="/user/profile/<?= $user->{"id"} ?>">
+                    <tr class="mhs-row" data-href="/user/profile/<?= $user['id'] ?>">
                         <td><?= $i ?></td>
-                        <td><?= $user->{"username"} ?></td>
-                        <td><?= $user->{"fullname"} ?></td>
-                        <td><?= $user->{"email"} ?></td>
-                        <td><?= $user->{"password"} ?></td>
+                        <td><?= $user['username'] ?></td>
+                        <td><?= $user['fullname'] ?></td>
+                        <td><?= $user['email'] ?></td>
+                        <td><?= $user['password'] ?></td>
                     </tr>
                     <?php
                     $i++;
