@@ -6,6 +6,10 @@ class User extends  CI_Controller {
         parent::__construct();
         
 		$this->load->model('User_model');
+
+		$this->load->library('session');
+		
+        $this->load->helper('url');
     }
     
     public function index()
