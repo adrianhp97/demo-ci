@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <table class="table table-hover table-data">
         <thead class="thead-dark">
         <tr>
-            <th style="width:5%" scope="col">Id</th>
+            <th style="width:5%" scope="col">No</th>
             <th style="width:10%" scope="col">Username</th>
             <th style="width:20%" scope="col">Fullname</th>
             <th style="width:20%" scope="col">Email</th>
@@ -24,18 +24,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <tbody>
         <?php
             $i = 1;
-            foreach ($user_list as $user) {
-                ?>
-                <tr class="mhs-row" data-href="/user/profile/<?= $user->{"username"} ?>">
-                    <td><?= $i ?></td>
-                    <td><?= $user->{"id"} ?></td>
-                    <td><?= $user->{"username"} ?></td>
-                    <td><?= $user->{"fullname"} ?></td>
-                    <td><?= $user->{"email"} ?></td>
-                    <td><?= $user->{"password"} ?></td>
-                </tr>
-                <?php
-                $i++;
+            if (is_array($user_list) || is_object($user_list))
+            {
+                foreach ($user_list as $user) {
+                    ?>
+                    <tr class="mhs-row" data-href="/user/profile/<?= $user->{"id"} ?>">
+                        <td><?= $i ?></td>
+                        <td><?= $user->{"username"} ?></td>
+                        <td><?= $user->{"fullname"} ?></td>
+                        <td><?= $user->{"email"} ?></td>
+                        <td><?= $user->{"password"} ?></td>
+                    </tr>
+                    <?php
+                    $i++;
+                }
             }
         ?>
         </tbody>

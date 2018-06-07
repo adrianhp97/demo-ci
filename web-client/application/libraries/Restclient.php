@@ -7,7 +7,7 @@ class Restclient
 
     function __construct() 
     {
-        $this->API="http://localhost/demo-ci/web-server/api/";
+        $this->API="http://localhost/demo-ci/web-server/api/user/";
     }
 
     function get($param = null)
