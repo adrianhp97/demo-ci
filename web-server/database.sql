@@ -13,6 +13,15 @@ CREATE TABLE IF NOT EXISTS `users` (
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+DROP TABLE IF EXISTS `images`;
+
+CREATE TABLE IF NOT EXISTS `images` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `path` text COLLATE utf8_unicode_ci NOT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 DROP TABLE IF EXISTS `keys`;
 
 CREATE TABLE IF NOT EXISTS `keys` (
@@ -29,3 +38,13 @@ CREATE TABLE IF NOT EXISTS `keys` (
 
 INSERT INTO `keys` (`id`, `user_id`, `key`, `level`, `ignore_limits`, `is_private_key`, `ip_addresses`, `date_created`) VALUES
 (1, 0, 'CODEX@123', 0, 0, 0, NULL, '2017-10-12 13:34:33');
+
+INSERT INTO `users` (`username`, `fullname`, `email`, `password`) VALUES
+('adrianhp', 'adrianhp', 'adrianhp@gmail.com', 'adrianhp');
+
+INSERT INTO `users` (`username`, `fullname`, `email`, `password`) VALUES
+('bobyhp', 'bobyhp', 'bobyhp@gmail.com', 'bobyhp');
+
+INSERT INTO `users` (`username`, `fullname`, `email`, `password`) VALUES
+('robyep', 'robyep', 'robyep@gmail.com', 'robyep');
+

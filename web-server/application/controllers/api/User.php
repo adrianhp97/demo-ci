@@ -12,12 +12,12 @@ class User extends REST_Controller {
     { 
         parent::__construct();
         
-        $this->load->model('UsersModel');
+        $this->load->model('Users_model');
     }
     
     public function index_get($id = 0) 
     {
-        $users = $this->UsersModel->get($id);
+        $users = $this->Users_model->get($id);
         
         if (!empty($users))
         {
@@ -44,7 +44,7 @@ class User extends REST_Controller {
             !empty($data['email']) && 
             !empty($data['password']))
         {
-            if ($this->UsersModel->insert($data))
+            if ($this->Users_model->insert($data))
             {
                 $this->response([
                     'status' => TRUE,
@@ -76,7 +76,7 @@ class User extends REST_Controller {
             !empty($data['email']) && 
             !empty($data['password']))
         {
-            if($this->UsersModel->update($id, $data))
+            if($this->Users_model->update($id, $data))
             {
                 $this->response([
                     'status' => TRUE,
@@ -98,7 +98,7 @@ class User extends REST_Controller {
     {
         if($id)
         {
-            if($this->UsersModel->delete($id))
+            if($this->Users_model->delete($id))
             {
                 $this->response([
                     'status' => TRUE,
